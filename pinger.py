@@ -55,7 +55,7 @@ while True:
     attemptPingLog(DNSGoogleIP, "DNS   ")
     
     #Wait 60 seconds before running again
-    time.sleep(5)
+    time.sleep(60)
 
 
 
