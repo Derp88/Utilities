@@ -1,5 +1,6 @@
 import subprocess
 import time
+import os
 from datetime import datetime
 
 #IPs that we will be pinging
@@ -23,6 +24,7 @@ def logSuccess(sourceName, result):
     #Log output
     with open("pingLog.txt", "a+") as logFile:
         logFile.write(currentTime + " " + sourceName + "  Responded in " + averageTime + " with " + packetLoss + "\n")
+    print(sourceName + ": OK  "+ "(" + currentTime + ")" )
 
 def logFailure(sourceName):
     #Get current time
@@ -31,8 +33,9 @@ def logFailure(sourceName):
     with open("pingLog.txt", "a+") as logFile:
         logFile.write(currentTime + " " + sourceName + "  ### FAILED TO RESPOND ###" + "\n")
     #Log output in special file
-    with open("failLog.txt", "a+") as logFile:
-        logFile.write(currentTime + " " + sourceName + "  Failure to respond" + "\n")
+    with open("failLog.txt", "a+") as logfailFile:
+        logfailFile.write(currentTime + " " + sourceName + "  Failure to respond" + "\n")
+    print(sourceName + ": FAIL  "+ "(" + currentTime + ")" )
 
 def attemptPingLog(ip, sourceName):
     #Try to ping device
@@ -47,6 +50,8 @@ def attemptPingLog(ip, sourceName):
             logFailure(sourceName)
 
 while True:
+    #Clear terminal
+    os.system('cls' if os.name == 'nt' else 'clear')
     #Try to ping router
     attemptPingLog(routerIP, "ROUTER")
     #Try to ping Modem
@@ -55,7 +60,7 @@ while True:
     attemptPingLog(DNSGoogleIP, "DNS   ")
     
     #Wait 60 seconds before running again
-    time.sleep(60)
+    time.sleep(30)
 
 
 
