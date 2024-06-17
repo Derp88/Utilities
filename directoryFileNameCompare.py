@@ -4,6 +4,9 @@ import os
 #Write unique files to file
 writeOutput = True
 
+#Delete duplicate files in dir 2
+deleteDupesDir2 = False
+
 #Put directory paths here
 dir1 = "C://example//dir//here//1"
 dir2 = "C://example//dir//here//2"
@@ -45,4 +48,15 @@ if(writeOutput):
     with open("matching.txt", "w") as matchingFile:
         for fileName in matchingList:
             matchingFile.write(fileName + "\n")
+
+#Optional functionality to delete duplicate files in dir 2
+if(deleteDupesDir2):
+    for fileName in matchingList:
+        #Sanity check to make sure the file actually exists. (It really should, we found it!)
+        deletePath = os.path.join(dir2, fileName)
+        if os.path.exists(deletePath):
+            print("Deleting: " + deletePath)
+            os.remove(deletePath)
+        else:
+            print("Error: The file " + deletePath + " does not exist!")
 
