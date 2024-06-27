@@ -5,11 +5,11 @@ import os
 writeOutput = True
 
 #Delete duplicate files in dir 2
-deleteDupesDir2 = False
+deleteDupesDir2 = True
 
 #Put directory paths here
-dir1 = "C://example//dir//here//1"
-dir2 = "C://example//dir//here//2"
+dir1 = ""
+dir2 = ""
 
 #Get file contents in a list
 dir1List = os.listdir(dir1)

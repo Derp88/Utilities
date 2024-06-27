@@ -24,7 +24,7 @@ def logSuccess(sourceName, result):
     #Log output
     with open("pingLog.txt", "a+") as logFile:
         logFile.write(currentTime + " " + sourceName + "  Responded in " + averageTime + " with " + packetLoss + "\n")
-    print(sourceName + ": OK  "+ "(" + currentTime + ")" )
+    print(sourceName + ": OK  "+ "  Ping: " + averageTime + "   @(" + currentTime + ")" )
 
 def logFailure(sourceName):
     #Get current time
